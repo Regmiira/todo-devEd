@@ -76,8 +76,14 @@ function filterTodo(e) {
         todo.style.display = "flex";
         break;
       case "completed":
-      case "uncompleted": // Combine the "completed" and "uncompleted" cases
         if (todo.classList.contains("completed")) {
+          todo.style.display = "flex";
+        } else {
+          todo.style.display = "none";
+        }
+        break;
+      case "uncompleted":
+        if (!todo.classList.contains("completed")) {
           todo.style.display = "flex";
         } else {
           todo.style.display = "none";
@@ -140,8 +146,8 @@ function removeLocalTodos(todo) {
     todos = [];
   } else {
     todos = JSON.parse(localStorage.getItem("todos"));
-  } 
+  }
   const todoIndex = todo.children[0].innerHTML;
-  todos.splice(todos.indexOf(todoIndex),1);
-  localStorage.setItem("todos",JSON.stringify(todos));
+  todos.splice(todos.indexOf(todoIndex), 1);
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
